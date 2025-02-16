@@ -181,6 +181,68 @@ That object (map) is kind of **aggregate** as it encapsulates
 consistent and composite view to peer instance data.
 
 ## Protocol (peer communication)
+Protocol between peer instances contains several operations.
+Oerations are request/reply pairs done via RPC calls.
+
+### Joining with other peers: 'join'
+In startup mbox instance makes **'join'** call to each peer.
+
+Request:
+
+```
+list('join' own-name own-id peer-address)
+```
+
+Reply:
+
+```
+list(peer-id peer-name peer-address peer-local-mbox-ids peer-known-names)
+```
+
+### Registering new message box to peers: 'reg'
+When new message box is created it's informed to peers.
+
+Request:
+
+```
+list('reg' own-id new-mbox-id)
+```
+
+Reply:
+
+```
+'ok'
+```
+
+### Adding new name for message box: 'name'
+Informing peers about new name -> message box binding.
+
+Request:
+
+```
+list('name' own-id mbox-name mbox-id)
+```
+
+Reply:
+
+```
+true
+```
+
+### Sending message to peer: 'send'
+Message is sent to peer instance message box.
+
+Request:
+
+```
+list('send' own-id mbox-id message-value)
+```
+
+Reply:
+
+```
+list(is-success error-description)
+```
 
 ## Future development issues
 Things to do in future maybe:
