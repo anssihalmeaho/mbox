@@ -151,9 +151,13 @@ new = proc(own-name own-addr peer-addrs)
 	end
 
 	recmsg = proc(mbox-id)
+		call(recmsg-with mbox-id map('wait' true))
+	end
+
+	recmsg-with = proc(mbox-id options)
 		found channel = getl(call(stdvar.value lbox) mbox-id):
 		if(found
-			recwith(channel map('wait' true))
+			recwith(channel options)
 			list(false 'mbox not found')
 		)
 	end
@@ -199,6 +203,7 @@ new = proc(own-name own-addr peer-addrs)
 		'create-mbox'        create-mbox
 		'sendmsg'            sendmsg
 		'recmsg'             recmsg
+		'recmsg-with'        recmsg-with
 		'register-with-name' register-with-name
 		'id-by-name'         id-by-name
 		'contents'           contents

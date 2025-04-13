@@ -96,6 +96,11 @@ Return value is list:
 1. **true** if message was received, **false** otherwise
 2. received value
 
+### 'recmsg-with'
+Receives message (value) from given message box.
+Similar as **'recmsg'** method but options map is given as 2nd argument.
+Options map is similar which is given to **recwith** -operator (FunL).
+
 ### 'register-with-name'
 Assigns name (2nd argument, string) for message box (1st argument).
 
